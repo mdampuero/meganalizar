@@ -1,0 +1,67 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'micuenta'); ?>">Mi Cuenta</a></li>
+	<li class="breadcrumb-item active">Resultados</li>
+</ol>
+<div class="row myAccount">
+	<?php echo $this->render('account/partial/menu.phtml'); ?>
+	<div class="col-sm-9">
+		<div class="row">
+			<div class="col-sm-4">
+				<h2>Facturación</h2>
+			</div>
+			<div class="col-sm-8">
+				<div class="col-xs-12 input-group">
+					<input name="desde" id="desde" placeholder="Fecha desde" readonly="readonly" class="noRadius form-control calendar" style="width: 50%; border-right: none;" type="text" value="<?php echo $this->parameters['desde'] ?>">
+					<input name="hasta" id="hasta" placeholder="Fecha hasta" readonly="readonly" class="noRadius form-control calendar" style="width: 50%;" type="text" value="<?php echo $this->parameters['hasta'] ?>">
+					<span class="input-group-addon noRadius">
+						<a href="javascript:filter()"><span class="glyphicon glyphicon-search"></span></a>
+					</span>
+				</div>
+			</div>
+		</div>
+		<hr class="condensed">
+		<?php if ($this->entities): ?>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th >Nº de muestra</th>
+						<th class="text-center">Fecha</th>
+						<th class="text-right">Total</th>
+						<th class="text-right"></th>
+					</tr> 
+				</thead>
+				<tbody>
+					<?php foreach ($this->entities as $key => $value): $total+=$value['total']?>
+						<tr class="hand" onclick="openModalScript('ajax','<b class=green>Detalle de facturación muestra Nº <?php echo $value['bd_nro_muestra'] ?></b>',null,'<?php echo $this->url(array('controller'=>'account','action'=>'billingdetail','popup'=>true,'muestra'=>$value['bd_nro_muestra']),'default');?>','40%','300px');">
+							<td><?php echo $value['bd_nro_muestra'] ?></td>
+							<td class="text-center">
+								<?php echo $value['bd_fecha'] ?>
+							</td>
+							<td class="text-right">
+								<b>$ <?php echo number_format($value['total'],2,',','.') ?></b>
+							</td>
+							<td class="text-right">
+								<a href="javascript:void(0)"><span class="glyphicon glyphicon-eye-open"></span> <span class="hidden-xs">Ver detalle</span></a>
+							</td>
+						</tr>
+					<?php endforeach;?>
+					<tr>
+						<td class="text-right" colspan="3">
+							<b>TOTAL: $ <?php echo number_format($total,2,',','.') ?></b>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<?php else: ?>
+			<p>No se encontraron resultados entre las fechas del '<?php echo $this->parameters['desde'] ?>' al '<?php echo $this->parameters['hasta'] ?>'</p>
+		<?php endif;?>
+	</div>
+</div>
+<script type="text/javascript">
+	function filter(){
+		location.href='<?php echo $this->url(array(),'facturacion'); ?>?desde='+$("#desde").val()+'&hasta='+$("#hasta").val();
+	}
+</script>

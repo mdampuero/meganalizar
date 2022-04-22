@@ -1,0 +1,39 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url(array(),'inicio'); ?>"><img src="<?php echo $this->baseUrl()."/imgs/meganalizar/meganalizar_logo.png";?>"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="containerMyAccount">
+                <button class="btn bg-green hidden-xs pull-right noRadius" onclick="location.href='<?php echo $this->url(array(),'micuenta'); ?>'"><i class="fa fa-user" aria-hidden="true"></i> 
+                    <?php if ($this->login): ?>
+                        MI CUENTA (<?php echo $this->login['BMatricula'] ?>)
+                    <?php else: ?>
+                        INICIAR SESIÓN
+                    <?php endif;?>
+                </button>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li <?php echo ($this->parameters["controller"]=="index")?"class='active'":"";?>><a href="<?php echo $this->url(array(),'inicio'); ?>" title="Inicio">INICIO</a></li>
+                <li <?php echo ($this->parameters["controller"]=="determinations")?"class='active'":"";?>><a href="<?php echo $this->url(array(),'determinaciones'); ?>" title="Determinaciones">DETERMINACIONES</a></li>
+                <li <?php echo ($this->parameters["controller"]=="sampling")?"class='active'":"";?>><a href="<?php echo $this->url(array(),'tomaDeMuestra'); ?>" title="Toma de muestra">TOMA DE MUESTRA</a></li>
+                <li <?php echo ($this->parameters["controller"]=="usedata")?"class='active'":"";?>><a href="<?php echo $this->url(array(),'datosutiles'); ?>" title="Datos Útiles">DATOS ÚTILES</a></li>
+                <li class="visible-xs <?php echo ($this->parameters["controller"]=="account")?"active":"";?>">
+                    <a href="<?php echo $this->url(array(),'micuenta'); ?>" title="Mi cuenta">
+                        <?php if ($this->login): ?>
+                            MI CUENTA (<?php echo $this->login['BMatricula'] ?>)
+                        <?php else: ?>
+                            INICIAR SESIÓN
+                        <?php endif;?>
+                    </a>
+                </li>        
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,17 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'notas'); ?>">Notas</a></li>
+	<li class="breadcrumb-item active"><?php echo ucfirst(strtolower($this->entity["ne_title"]));?></li>
+</ol>
+<h2 class="gray"><?php echo ucfirst(strtolower($this->entity["ne_title"]));?></h2>
+<hr class="condensed">
+<div class="row">
+	<div class=" pull-left col-sm-5">
+		<img src="<?php echo $this->baseUrl()."/files/".$this->entity["ne_picture"]; ?>" class="img-responsive">
+	</div>
+	<div class="pull-right col-sm-7" >
+		<p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> <?php echo date("d/m/Y",strtotime($this->entity["ne_date"]));?></p>
+		<p><?php echo nl2br($this->entity["ne_description"]); ?></p>
+	</div>
+</div>
+<br/>

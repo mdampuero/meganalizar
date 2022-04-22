@@ -1,0 +1,57 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Aparecerá como ayuda en las siguientes determinaciones</div>
+        <div class="panel-body condensed">
+            <div class="row">
+                <div class="col-sm-4">
+                    <?php if ($this->formDisabled != true): ?>
+                        <label>Seleccione una o más determinaciones</label>
+                        <select class="autocomplete" name="determinations" id="determinations" required="required">
+                            <option value=""></option>
+                            <?php foreach ($this->determinations as $key => $val): ?>
+                                <option value="<?php echo $key ?>"><?php echo $val ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    <?php endif; ?>
+                </div>
+                <div class="clearfix"></div>
+                <br/>
+                <div id="determinationsSelected">
+                    <?php foreach ($this->help_determinations as $key => $value): ?>
+                        <div class="col-sm-6" id="content_<?php echo $value["hd_de_id"] ?>">
+                            <label>
+                                <?php echo $value["de_name"] ?> 
+                                <?php if ($this->formDisabled != true): ?>
+                                <a href="javascript:rm('content_<?php echo $value["hd_de_id"] ?>')"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+                                <?php endif; ?>
+                            </label>
+                            <input type="hidden" name="determinations[]" value="<?php echo $value["hd_de_id"] ?>">
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+        $(".autocomplete").combobox({ 
+            select: function (event, ui) { 
+                var label=$(this).find("option:selected").text();
+                var id=$(this).val();
+                setTimeout(function (){
+                    $('.ui-autocomplete-input').val('');
+                    var html=`
+                    <div class="col-sm-6" id="content_${ id }">
+                    <label>${ label } <a href="javascript:rm('content_${ id }')"><span class="glyphicon glyphicon-remove text-danger"></span></a></label>
+                    <input type="hidden" name="determinations[]" value="${ id }">
+                    </div>`;
+                    $("#determinationsSelected").append(html);
+                }, 100);
+            } 
+        }); 
+    });
+    function rm(div){
+        $('#'+div).remove();
+    }
+</script>

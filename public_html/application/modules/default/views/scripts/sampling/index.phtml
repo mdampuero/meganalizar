@@ -1,0 +1,34 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item active">Toma de muestra</li>
+</ol>
+<h2 class="gray">Toma de muestra</h2>
+<hr class="condensed">
+<?php if ($this->entities): ?>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Archivo</th>
+					<th class="text-center">Actualizado</th>
+					<th class="text-right"></th>
+				</tr> 
+			</thead>
+			<tbody>
+				<?php foreach ($this->entities as $key => $value): ?>
+					<tr class="hand" onclick="location.href='<?php echo $this->url(array('module'=>'helper','controller'=>'index','action'=>'download','file'=>$value['sa_file'],'name'=>$value['sa_file_filename']),'default',true);?>'">
+						<td><?php echo $value['sa_name'] ?></td>
+						<td class="text-center">
+							<?php echo ($value['sa_modified'])?date('d/m/Y',$value['sa_modified']):'N/E'; ?>
+						</td>
+						<td class="text-right">
+							<a href="javascript:void(0)"><span class="glyphicon glyphicon-download-alt"></span> <span class="hidden-xs">Descargar</span></a>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			</tbody>
+		</table>
+	</div>
+<?php else: ?>
+	<p>No se encontraron resultados</p>
+<?php endif;?>

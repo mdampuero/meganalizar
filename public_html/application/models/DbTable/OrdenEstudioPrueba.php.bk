@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * Author: Mauricio Ampuero 
+ * Organization: Inamika Interactive
+ * E-Mail: mdampuero@gmail.com
+ */
+
+require_once 'Model.php';
+
+class Model_DBTable_OrdenEstudioPrueba extends Model {
+
+    protected $_name = 'apachecms_orden_estudio_prueba';
+    protected $names = 'op_numero';
+    protected $primary = 'op_id';
+    protected $deleted = 'op_delete';
+    protected $status = 'op_status';
+    protected $modified = 'op_modified';
+    protected $created = 'op_created';
+    protected $defultSort = 'op_id';
+    protected $defultOrder = 'DESC';
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function add($data,$ordenEstudio) {
+        $parameters=array(
+            'op_oe_id'=>$ordenEstudio["oe_id"],
+            'op_id_orden_estudio'=>$data->id,
+            'op_codigo_prueba'=>$data->codigoPrueba,
+            'op_nombre_prueba'=>$data->nombrePrueba,
+            'op_resultado'=>$data->resultado,
+            'op_observacion'=>$data->observacion,
+            'op_unidad'=>($data->unidad)?$data->unidad:'',
+            'op_referencia'=>$data->referencia,
+            'op_metodologia'=>$data->metodologia,
+            'op_estado'=>$data->estado,
+            'op_status'=>1,
+            'op_validado_matricula'=>$data->validado->matricula,
+            'op_validado_nombre'=>$data->validado->nombre
+            );
+        $id = $this->insert($parameters);
+        if ($id > 0) {
+            return $this->get($id);
+        } else {
+            return null;
+        }
+    }
+}
+
+?>

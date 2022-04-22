@@ -1,0 +1,136 @@
+<ol class="breadcrumb noRadius hidden-print">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'micuenta'); ?>">Mi Cuenta</a></li>
+	<li class="breadcrumb-item active">Resultados</li>
+</ol>
+<div class="row myAccount">
+	<?php echo $this->render('account/partial/menu.phtml'); ?>
+	<div class="col-sm-9 ">
+		<div class="hidden-print">
+			<div class="row">
+				<div class="col-sm-4">
+					<h2>Resultados</h2>
+				</div>
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="col-xs-6">
+							<select name="fecha" class="form-control noRadius" onchange="location.href='<?php echo $this->url(array(),'micuenta',true) ?>?fecha='+this.value">
+								<?php if ($this->parameters['muestra']): ?>
+									<option value="">-- Seleccione una fecha--</option>
+								<?php endif ?>
+								<?php foreach ($this->dates as $key => $value): ?>
+									<option value='<?php echo $value['fecha'] ?>' <?php echo ($value['fecha']==$this->parameters['fecha'])?'selected="selected"':''; ?>><?php echo $value['fecha'] ?></option>
+								<?php endforeach ?>
+							</select>
+						</div>
+						<div class="col-xs-6">
+							<input name="muestra" id="muestra" placeholder="Nº de muestra" class="form-control noRadius" type="text" onkeyup="is_enter(event);" value="<?php echo $this->parameters['muestra'] ?>">
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="condensed">
+		</div>
+		<div class="results panel-group">
+			<?php if ($this->result): ?>			
+				<?php foreach ($this->result as $key => $value): ?>
+					<div class="panel panel-default noRadius hidden-print" id="panel<?php echo $value['RMuestra'] ?>">
+						<div class="panel-heading noRadius hand transitions">
+							<span class="pull-right"><b><?php echo $value['RFecha'] ?></b>&nbsp;</span>
+							<h4 class="panel-title" data-toggle="collapse" data-target="#collapse<?php echo $value['RMuestra'] ?>" aria-expanded="false" aria-controls="collapseExample">
+								<b>Muestra Nº <?php echo $value['RMuestra'] ?></b>
+							</h4>
+						</div>
+						<div id="collapse<?php echo $value['RMuestra'] ?>" class="panel-collapse collapse">
+							<div class="panel-body noRadius" id="content<?php echo $value['RMuestra'] ?>">
+								<div class='text-center' style=''><img src='<?php echo $this->baseUrl(); ?>/imgs/loading.gif'><br/>Cargando</div>
+							</div>
+							<div class="panel-footer noRadius hidden-print">
+								<a href="javascript:formatPrint('<?php echo $value['RMuestra'] ?>')"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+								&nbsp;&nbsp; 
+								<!-- <a href=""><span class="glyphicon glyphicon-download-alt"></span> Descargar</a> -->
+							</div>
+						</div>
+					</div>				
+				<?php endforeach ?>
+			<?php else: ?>
+				<p>No se encontraron resultados con esos parámetros de búsqueda.</p>
+			<?php endif ?>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var contentDownload=[];
+	$(function (){
+		openFirst();
+		$('#muestra').focus();
+		$('.panel-collapse').on('show.bs.collapse', function (e) {
+			load(e.currentTarget.id);
+		})
+	});
+	function openFirst(){
+		var panel=$('.panel-collapse.collapse').first().attr('id')
+		$('#'+panel).collapse("toggle");
+		load(panel);
+	}
+	function formatPrint(muestra){
+		$('.panel.panel-default').addClass('hidden-print');
+		$('#panel'+muestra).removeClass('hidden-print');
+		window.print();
+	}
+	function load(element){
+		nroMuestra=element.replace('collapse','');
+		$.post("<?php echo $this->url(array('controller'=>'account','action'=>'load'),'default') ?>",
+		{
+			muestra: nroMuestra,
+		})
+		.done(function (data) {
+			$('#content'+nroMuestra).html(data);
+		});
+	}
+	function is_enter(e) {
+		if (e.keyCode == 13 && $("#muestra").val().length > 3 ) {
+			location.href='<?php echo $this->url(array('action'=>'index','method'=>'form2')); ?>?muestra='+$("#muestra").val()
+		}
+	}
+</script>
+<!-- <table class="table table-striped">
+	<thead>
+		<tr>
+			<th>902 - UREA SERICA </th>
+			<th class="text-right">Valor hallado <a href="javascript:openModalScript('902 - UREA SERICA');">(Ref.)</a></th>
+		</tr> 
+	</thead>
+	<tbody>
+		<tr>
+			<td >UREA SERICA</td>
+			<td class="text-right">0.3 g/L</td>
+		</tr>
+		<tr>
+			<td class="text-muted text-left">* Observaciones: CORROBORADO POR REPETICIÓN </i></td>
+			<td class="text-muted text-right">Validado por: Herrera Lucia. Mat: 1342</i></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>546 - IONOGRAMA SERICO </th>
+			<th class="text-right">Valor hallado <a href="javascript:openModalScript('902 - UREA SERICA');">(Ref.)</a></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td >SODIO SERICO</td>
+			<td class="text-right">150 mmol/L</td>
+		</tr>
+		<tr>
+			<td >POTASIO  SERICO</td>
+			<td class="text-right">150 mmol/L</td>
+		</tr>
+		<tr>
+			<td >CLORO SERICO</td>
+			<td class="text-right">150 mmol/L</td>
+		</tr>
+	</tbody>
+</table> -->

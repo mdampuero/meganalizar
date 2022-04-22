@@ -1,0 +1,54 @@
+<?php
+foreach ($this->fields as $key => $field) {
+    if ($field['notdisplay'] != true && $field['type'] != 'partial-view' && $field['type'] != 'hidden' && $field['type'] != 'gallery') {
+        $colspan++;
+    }
+}
+?>
+<table border="1">
+    <tr>
+        <th></th>
+    </tr>
+    <tr>
+        <th colspan="<?php echo $colspan; ?>">Listado de <?php echo utf8_decode($this->title); ?></th>
+    </tr>
+    <tr>
+        <th></th>
+    </tr>
+    <tr>
+        <?php
+        foreach ($this->fields as $key => $field) {
+            if ($field['notdisplay'] != true && $field['type'] != 'partial-view' && $field['type'] != 'hidden' && $field['type'] != 'gallery') {
+                echo '<th>' . utf8_decode($field["label"]) . '</th>';
+            }
+        }
+        ?>
+    </tr>
+    <?php
+    if (count($this->results) > 0) {
+        foreach ($this->results as $keyRow => $result) {
+            ?>
+            <tr>
+                <?php
+                foreach ($this->fields as $key => $field) {
+                    if ($field['notdisplay'] != true && $field['type'] != 'partial-view' && $field['type'] != 'hidden' && $field['type'] != 'gallery') {
+                        if ($field['type'] == 'image') {                            
+                            $result[$field["field"]] =  HOST.$this->baseUrl() . "/files/" . $result[$field["field"]];
+                        }
+                        if ($field['type'] == 'date') {
+                            $result[$field["field"]] = strtotime($result[$field["field"]]);
+                            $result[$field["field"]] = date("d/m/Y", $result[$field["field"]]);
+                        }
+                        if ($field['type'] == 'combo'){
+                            $result[$field["field"]] = $field["data"][$result[$field["field"]]];
+                        }
+                        echo '<td valign="top">' . utf8_decode($result[$field["field"]]) . '</td>';
+                    }
+                }
+                ?>
+            </tr>
+            <?php
+        }
+    }
+    ?>
+</table>

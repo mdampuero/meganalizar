@@ -1,0 +1,56 @@
+<?php foreach ($this->results as $key2 => $result): ?>
+    <blockquote style="padding-bottom: 0px; padding-top: 0px;">
+        <p class="text-primary"><b><?php echo $result['NroEstudio'].' - '.$result['NEstudio'] ?></b></p>
+        <table class="table table-condensed" border="0" style="font-size: 12px !important">
+            <?php
+            foreach ($result['Contenido_parser']["det"] as $index => $det) {
+                ?>
+                <tr>
+                    <td><?php echo $det ?></td>
+                    <td style="width: 150px; text-align: right;"><b style="color: #333333;"><?php echo $result['Contenido_parser']["value"][$index] ?></b></td>
+                </tr>
+                <?php
+            }
+            if ($result['Contenido_parser']["obs"]) {
+                foreach ($result['Contenido_parser']["obs"] as $key => $observaciones) {
+                    $title = ($key == 0) ? "* Observaciones: " : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    echo '<tr><td colspan="2">';
+                    echo '<b>' . $title . ' </b>' . utf8_decode($observaciones) . '<br/>';
+                    echo '</td></tr>';
+                }
+            }
+            if (trim($result['Contenido_parser']["pat"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>PATRON: </b>' . utf8_decode($result['Contenido_parser']["pat"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["tit"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>T&Iacute;TULO: </b>' . utf8_decode($result['Contenido_parser']["tit"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["met"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>M&eacute;todo: </b>' . utf8_decode($result['Contenido_parser']["met"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["val"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>Validado por: </b>' . utf8_decode($result['Contenido_parser']["val"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            ?>
+            <?php if (!empty($result["de_reference_value"])): ?>
+                <tr>
+                    <td colspan="2">
+                        <a data-toggle="collapse" href="#collapse<?php echo $key2 ?>" aria-expanded="false" aria-controls="collapseExample">
+                            Ver valores de referencia
+                        </a>
+                        <div class="collapse" id="collapse<?php echo $key2 ?>"><?php echo utf8_encode(nl2br($result["DValorReferencia"])) ?></div>
+                    </td>
+                </tr>
+            <?php endif ?>
+        </table>
+    </p>
+</blockquote>
+<?php endforeach ?>

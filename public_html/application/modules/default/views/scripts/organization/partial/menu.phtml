@@ -1,0 +1,60 @@
+<div class="col-sm-3">
+	<div class="list-group noRadius hidden-xs" style="font-size: 13px;">
+		<a href="<?php echo $this->url(array(),'organizacion'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='index')?'active':''; ?>">
+			Introducción
+		</a>
+		<a href="<?php echo $this->url(array(),'vision'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='vision')?'active':''; ?>">
+			Visión & Misión
+		</a>
+		<a href="<?php echo $this->url(array(),'autoridades'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='autority')?'active':''; ?>">
+			Autoridades
+		</a>
+		<a href="<?php echo $this->url(array(),'historia'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='history')?'active':''; ?>">
+			Historia
+		</a>
+	</div>
+	<div class="btn-group visible-xs" style="width: 100%;">
+		<ul class="dropdown-menu">
+			<?php if ($this->parameters['action']!='index'):?>
+				<li>
+					<a href="<?php echo $this->url(array(),'organizacion'); ?>">
+						Introducción
+					</a>
+				</li>
+			<?php else: ?>
+				<?php $current='Introducción' ?>
+			<?php endif; ?>
+			<?php if ($this->parameters['action']!='vision'):?>
+				<li>
+					<a href="<?php echo $this->url(array(),'vision'); ?>">
+						Visión
+					</a>
+				</li>
+			<?php else: ?>
+				<?php $current='Visión' ?>
+			<?php endif; ?>
+			<?php if ($this->parameters['action']!='autority'):?>
+				<li>
+					<a href="<?php echo $this->url(array(),'autoridades'); ?>">
+						Autoridades
+					</a>
+				</li>
+			<?php else: ?>
+				<?php $current='Autoridades' ?>
+			<?php endif; ?>
+			<?php if ($this->parameters['action']!='history'):?>
+				<li>
+					<a href="<?php echo $this->url(array(),'historia'); ?>">
+						Historia
+					</a>
+				</li>
+			<?php else: ?>
+				<?php $current='Historia' ?>
+			<?php endif; ?>
+		</ul>
+		<button type="button"  class="btn btn-block btn-primary dropdown-toggle noRadius" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<?php echo $current ?> <i class="fa fa-bars" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div style="height: 50px;"></div>
+</div>

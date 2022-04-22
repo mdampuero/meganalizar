@@ -1,0 +1,30 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item active">Iniciar sesión</li>
+</ol>
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3">
+		<div class="panel panel-default noRadius">
+			<div class="panel-heading noRadius">
+				Iniciar sesión
+			</div>
+			<div class="panel-body">
+				<form method="POST" action="<?php echo $this->url(array('controller'=>'login','action'=>'login'),'default',true) ?>">
+					<div class="form-group text-left">
+						<label>Matrícula</label>
+						<input type="text" name="matricula" placeholder="Ingrese su Matrícula" class="form-control noRadius">
+					</div>
+					<div class="form-group text-left">
+						<label>Contraseña</label>
+						<input type="password" name="clave" placeholder="Ingrese su Contraseña" class="form-control noRadius">
+					</div>
+					<br>
+					<button class="btn btn-primary noRadius">Ingresar</button>
+					<div class="checkbox text-left">
+						<label><input type="checkbox" value="1" checked="checked" name="recordarme">Recordarme</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

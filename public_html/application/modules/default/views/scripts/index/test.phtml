@@ -1,0 +1,50 @@
+<div class="modal fade" id="modalAniversary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:2%; overflow-y:visible;">
+    <div class="modal-dialog" id="modalAniversaryContent">
+        <div class="modal-content noRadius">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 id="titleModal" class="text-primary"></h5>
+            </div>
+            <div class="modal-body  col-lg-12" id="">
+                <div id="corouselAniversary" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <video width="100%" controls autoplay>
+                                <source src="<?php echo HOST.$this->baseUrl()."/imgs/videos/" ?>video1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="item">
+                            <video width="100%" controls >
+                                <source src="<?php echo HOST.$this->baseUrl()."/imgs/videos/" ?>video2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" style="height: 83%;" href="#corouselAniversary" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" style="height: 83%;" href="#corouselAniversary" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+	$(function (){
+        $("#modalAniversary").modal("show");
+        $('#corouselAniversary').carousel({
+            interval: 26000
+        });
+
+        $('#corouselAniversary').carousel('cycle');
+        $('#modalAniversary').on('hidden.bs.modal', function () {
+            $("#corouselAniversary .carousel-inner").html('');
+        })
+    });
+</script>

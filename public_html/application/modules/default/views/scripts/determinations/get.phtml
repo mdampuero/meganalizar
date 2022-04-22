@@ -1,0 +1,98 @@
+<div class="row">
+	<div class="col-sm-4">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th class="green">INF. GENERAL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Método</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['me_name'])?$this->entity['me_name']:'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<tr>
+					<th>Analizador/es</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->eq_names)?join(',',$this->eq_names):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<tr>
+					<th>Procesamiento</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['de_proccess'])?nl2br($this->entity['de_proccess']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<?php if (count($this->helps)): ?>
+					<tr>
+						<th>Datos útiles</th>
+					</tr>
+					<tr>
+						<td>
+							<?php foreach ($this->helps as $key => $value): ?>
+								<p><a href="<?php echo $this->url(array('id'=>$value['hd_he_id']),'datoutil');?>"><?php echo $value['he_name'] ?></a></p>
+							<?php endforeach ?>
+						</td>
+					</tr>
+				<?php endif ?>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="col-sm-4">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th class="green">INF. TÉCNICA</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Tipo de muestra</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['de_sample'])?nl2br($this->entity['de_sample']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<tr>
+					<th>Estabilidad/Transporte</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['de_shipping'])?nl2br($this->entity['de_shipping']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<tr>
+					<th colspan="2">Valores de referencia</th>
+				</tr>
+				<tr>
+					<td colspan="2"><?php echo ($this->entity['de_reference_value'])?nl2br($this->entity['de_reference_value']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm-4">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th class="green">INF. ADICIONAL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Indicaciones al paciente</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['de_patient_indication'])?nl2br($this->entity['de_patient_indication']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>
+				<tr>
+					<th>Indicaciones técnicas</th>
+				</tr>
+				<tr>
+					<td><?php echo ($this->entity['de_biochemical_indication'])?nl2br($this->entity['de_biochemical_indication']):'<i class="text-muted">N/A</i>'; ?></td>
+				</tr>			
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

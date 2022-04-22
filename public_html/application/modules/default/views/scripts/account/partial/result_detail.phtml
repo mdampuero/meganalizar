@@ -1,0 +1,43 @@
+<?php foreach ($this->results as $key => $result): $observaciones;?>
+   
+    <blockquote style="padding-bottom: 0px; padding-top: 0px;">
+        <a class="pull-right hidden-print" style="font-size: 13px !important" href="javascript:openModalScript('ajax','<b class=green><?php echo 
+        $result['oe_codigo_estudio'].' - '.$result['oe_nombre_estudio'] ?> - Valores de referencia</b>',null,'<?php echo 
+        $this->url(array('controller'=>'determinations','action'=>'getreference','popup'=>true,'estudio'=>$result['oe_codigo_estudio']),'default');?>','40%','300px');"><span class='hidden-xs'>Ver valores de referencia</span> <span class='visible-xs'>Ref.</span></a>
+        
+        <p class="green"><b><?php echo $result['oe_codigo_estudio'].' - '.$result['oe_nombre_estudio'] ?></b></p>
+        
+        <table class="table table-condensed" border="0" style="font-size: 12px !important">
+            <?php foreach ($result['practicas'] as $index => $practica):?>
+                <?php if($practica['op_codigo_prueba']=='COM'): $observaciones.=$practica['op_resultado'];?>
+            <?php else:?>
+                <tr>
+                    <td><?php echo $practica['op_codigo_prueba']." - ".$practica['op_nombre_prueba'] ?></td>
+                    <td style="width: 150px; text-align: right;">
+                        <b style="font-size: 14px;font-weight: 700;"><?php echo $practica['op_resultado']." ".$practica['op_unidad'] ?></b>
+                    </td>
+                </tr>
+            <?php endif;?>
+                <?php if(!empty($practica['op_observacion'])):?>
+                    <tr>
+                        <td colspan="2">Observaciones: <?php echo $practica['op_observacion'] ?></td>
+                    </tr>
+                <?php endif;?>
+            <?php endforeach;?>
+                <?php if($observaciones):?>
+                <tr>
+                    <td colspan="2"><?php echo $observaciones ?></td>
+                </tr>
+                <?php endif;?>
+                <tr>
+                    <td colspan="2"><b>Validado por:</b> <?php echo $practica['op_validado_nombre'].". Mat:".$practica['op_validado_matricula'] ?></td>
+                </tr>
+                <tr class="visible-print">
+                    <td colspan="2">
+                        <b>Valores de referencia:</b><br><?php //echo nl2br($result['de_reference_value']) ?>
+                    </td>
+                </tr>
+        </table>
+    </p>
+</blockquote>
+<?php endforeach ?>

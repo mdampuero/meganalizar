@@ -1,0 +1,55 @@
+<?php foreach ($this->results as $key2 => $result): ?>
+    <blockquote style="padding-bottom: 0px; padding-top: 0px;">
+        <a class="pull-right hidden-print" style="font-size: 13px !important" href="javascript:openModalScript('ajax','<b class=green><?php echo $result['NroEstudio'].' - '.$result['NEstudio'] ?> - Valores de referencia</b>',null,'<?php echo $this->url(array('controller'=>'determinations','action'=>'getreference','popup'=>true,'estudio'=>$result['NroEstudio']),'default');?>','40%','300px');"><span class='hidden-xs'>Ver valores de referencia</span> <span class='visible-xs'>Ref.</span></a>
+        <p class="green"><b><?php echo $result['NroEstudio'].' - '.$result['NEstudio'] ?></b></p>
+        
+        <table class="table table-condensed" border="0" style="font-size: 12px !important">
+            <?php
+            foreach ($result['Contenido_parser']["det"] as $index => $det) {
+                ?>
+                <tr>
+                    <td><?php echo $det ?></td>
+                    <td style="width: 150px; text-align: right;">
+                        <b style="font-size: 14px;font-weight: 700;"><?php echo $result['Contenido_parser']["value"][$index] ?></b>
+                    </td>
+                </tr>
+                <?php
+            }
+            if ($result['Contenido_parser']["obs"]) {
+                foreach ($result['Contenido_parser']["obs"] as $key => $observaciones) {
+                    $title = ($key == 0) ? "* Observaciones: " : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    echo '<tr><td colspan="2">';
+                    echo '<b>' . $title . ' </b>' . utf8_encode($observaciones) . '<br/>';
+                    echo '</td></tr>';
+                }
+            }
+            if (trim($result['Contenido_parser']["pat"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>PATRON: </b>' . utf8_encode($result['Contenido_parser']["pat"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["tit"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>T&Iacute;TULO: </b>' . utf8_encode($result['Contenido_parser']["tit"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["met"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>M&eacute;todo: </b>' . utf8_encode($result['Contenido_parser']["met"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            if (trim($result['Contenido_parser']["val"])) {
+                echo '<tr><td colspan="2">';
+                echo '<b>Validado por: </b>' . utf8_encode($result['Contenido_parser']["val"]) . '<br/>';
+                echo '</td></tr>';
+            }
+            ?>
+            <tr class="visible-print">
+                <td colspan="2">
+                    <b>Valores de referencia:</b><br><?php echo nl2br($result['de_reference_value']) ?>
+                </td>
+            </tr>
+        </table>
+    </p>
+</blockquote>
+<?php endforeach ?>

@@ -1,0 +1,118 @@
+<h3><?php echo $this->bioquimico["BNombre"]." (".$this->bioquimico["BMatricula"].")";?></h3>
+<?php foreach ($this->results as $NMuestra => $results): ?>
+<br/>
+<table width="100%" border="0" style="border: #DDD solid 1px; font-size:12px;" cellpadding="4">
+    <thead>
+        <tr>
+            <th style="background-color: #009688; color:#FFF;"><h3>Muestra: Nº <?php echo $NMuestra;?></h3></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($results as $keyResult => $result): ?>
+            <tr>
+                <td style="padding-top:10px; color:#009688;padding-bottom:0;"><h3><b><?php echo $result['NroEstudio'].' ('.$result['NEstudio'].')' ?></h3></td>
+            </tr>
+            <tr>
+                <td style="width:100%;">
+                    <table width="100%" border="0" >
+                        <tbody>
+                        <?php foreach ($result['Contenido_parser']["det"] as $index => $det): ?>
+                            <tr>
+                                <td style="border-bottom: #DDD solid 1px; font-size:12px; width:50%;" align="left"><?php echo $det ?></td>
+                                <td style="border-bottom: #DDD solid 1px; font-size:12px; width:50%;" align="right"><b><?php echo $result['Contenido_parser']["value"][$index] ?></b></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php 
+                        if ($result['Contenido_parser']["obs"]) {
+                            foreach ($result['Contenido_parser']["obs"] as $key => $observaciones) {
+                                $title = ($key == 0) ? "* Observaciones: " : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                echo '<tr><td colspan="2" style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">';
+                                echo '<b>' . $title . ' </b>' . utf8_encode($observaciones) . '<br/>';
+                                echo '</td></tr>';
+                            }
+                        }
+                        if (trim($result['Contenido_parser']["pat"])) {
+                            echo '<tr><td colspan="2" style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">';
+                            echo '<b>PATRON: </b>' . utf8_encode($result['Contenido_parser']["pat"]) . '<br/>';
+                            echo '</td></tr>';
+                        }
+                        if (trim($result['Contenido_parser']["tit"])) {
+                            echo '<tr><td colspan="2" style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">';
+                            echo '<b>T&Iacute;TULO: </b>' . utf8_encode($result['Contenido_parser']["tit"]) . '<br/>';
+                            echo '</td></tr>';
+                        }
+                        if (trim($result['Contenido_parser']["met"])) {
+                            echo '<tr><td colspan="2" style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">';
+                            echo '<b>M&eacute;todo: </b>' . utf8_encode($result['Contenido_parser']["met"]) . '<br/>';
+                            echo '</td></tr>';
+                        }
+                        if (trim($result['Contenido_parser']["val"])) {
+                            echo '<tr><td colspan="2" style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">';
+                            echo '<b>Validado por: </b>' . utf8_encode($result['Contenido_parser']["val"]) . '<br/>';
+                            echo '</td></tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
+<?php endforeach;?>
+<?php /* 
+<table width="100%" border="0" style="border: #DDD solid 1px; font-size:12px;" cellpadding="4">
+    <thead>
+        <tr>
+            <th style="background-color: #009688; color:#FFF;"><h3>Muestra: Nº <a href="" style="color:#FFF;"><?php echo $NMuestra;?></a></h3></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding-top:10px; padding-bottom:0;"><b>Hemograma (475A)</td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" border="0" >
+                    <tbody>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-top:10px; padding-bottom:0;"><b>Hemograma (475A)</td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" border="0" >
+                    <tbody>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="left">dsadsa</td>
+                            <td style="border-bottom: #DDD solid 1px; font-size:12px;" align="right"><b>dsadsa</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table> */?>

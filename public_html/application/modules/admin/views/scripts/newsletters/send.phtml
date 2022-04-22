@@ -1,0 +1,17 @@
+<?php if ($this->formDisabled): ?>
+    <div class="col-xs-12">
+        <?php if ($this->result["nl_status"]==1): ?>
+            <div class="alert alert-success text-center">
+                <h5>Este newsletter ya fue enviado.</h5>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-info text-center">
+                <h5>¿Desea iniciar o continuar el envío?</h5>
+                <a class="btn btn-sm btn-default noRadius" href="<?php echo $this->url(array('action'=>'index')) ?>" id="btnCancel">Cancelar</a>
+                <button class="btn btn-primary noRadius" type="button" id="btnAccept" onclick="abrir('<?php echo
+    $this->url(array('module' => 'admin', 'controller' => 'newsletters', 'action' => 'start', 'id' => $this->result["nl_id"],'popup'=>true), 'default', true);
+    ?>',500,600,'centro');">Aceptar</button>
+            </div>
+        <?php endif ?>
+    </div>    
+<?php endif ?>

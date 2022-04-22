@@ -1,0 +1,10 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'datosutiles'); ?>">Datos Útiles</a></li>
+	<li class="breadcrumb-item active"><?php echo $this->entity["he_name"];?></li>
+</ol>
+<h2 class="gray"><?php echo $this->entity["he_name"];?></h2>
+<hr class="condensed">
+<div class="table-responsive">
+	<p><?php echo nl2br($this->entity["he_content"]); ?></p>
+</div>

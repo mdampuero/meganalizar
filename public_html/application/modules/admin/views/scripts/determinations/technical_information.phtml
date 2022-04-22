@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Información Técnica</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>Estabilidad/Transporte</label>
+                    <textarea <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> class="form-control" name="de_shipping"><?php echo $this->result["de_shipping"] ?></textarea>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Observaciones de la muestra</label>
+                    <textarea <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> class="form-control" name="de_sample"><?php echo $this->result["de_sample"] ?></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

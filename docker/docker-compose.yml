@@ -1,0 +1,39 @@
+version: "3"
+services:
+    meganalizar_apache:
+        build: .
+        container_name: meganalizar_apache
+        extra_hosts:
+            - "dev.host.com:127.0.0.1"
+        volumes:
+            - ".:/app:cached"
+            - ../public_html/:/var/www/html/dev.host.com
+            - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./config/dev.host.com.conf:/etc/apache2/sites-enabled/dev.host.com.conf
+        expose:
+            - 80
+        ports:
+            - 80:80
+        links: 
+            - meganalizar_mysql
+            - meganalizar_memcached
+
+    meganalizar_mysql:
+        image: mysql:5.7
+        container_name: meganalizar_mysql
+        ports:
+            - 3306:3306
+        expose:
+            - 3306
+        volumes:
+            - ../db/working:/var/lib/mysql
+            - ../db/backups:/var/db/backups
+        environment:
+            - MYSQL_DATABASE=meganalizar
+            - MYSQL_ROOT_PASSWORD=Secreta007
+            - MYSQL_USER=user_db
+            - MYSQL_PASSWORD=Secreta007
+        command: mysqld --sql_mode=""
+    meganalizar_memcached:
+        image: memcached:latest
+        container_name: meganalizar_memcached

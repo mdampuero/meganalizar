@@ -1,0 +1,40 @@
+@media (min-width: 992px){
+	.navbar-brand, .navbar-nav>li>a {
+		letter-spacing: 1px;
+		line-height: 53px;
+		font-size: 12px;
+	}
+	.containerMyAccount button{
+		color: #FFF;
+		margin-top: 20px;
+		margin-left: 10%;
+		padding: 10px 40px;
+		margin-right: -15px;
+		-webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+		box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.navbar-brand img{
+		width: 240px;
+		margin-top: 2px;
+	}
+	.navbar-right {
+		float: right!important;
+		margin-right: -15px;
+	}
+	.box-login{
+		position: absolute;
+		left: 60%;
+		right: 0;
+		z-index: 2;
+		background: rgba(0,0,0,0.5);    
+		height: calc(100%);
+	}
+	.icon-lg .fa-lg {
+		font-size: 5em;
+	}
+}
+
+

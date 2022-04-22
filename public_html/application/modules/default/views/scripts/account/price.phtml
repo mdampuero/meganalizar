@@ -1,0 +1,38 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'micuenta'); ?>">Mi Cuenta</a></li>
+	<li class="breadcrumb-item active">Lista de Precios</li>
+</ol>
+<div class="row myAccount">
+	<?php echo $this->render('account/partial/menu.phtml'); ?>
+	<div class="col-sm-9">
+		<h2>Lista de Precios</h2>
+		<hr class="condensed">
+		<?php if ($this->entities): ?>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Archivo</th>
+						<th class="text-center">Actualizada</th>
+						<th class="text-right"></th>
+					</tr> 
+				</thead>
+				<tbody>
+					<?php foreach ($this->entities as $key => $value): ?>
+						<tr class="hand" onclick="location.href='<?php echo $this->url(array('module'=>'helper','controller'=>'index','action'=>'download','file'=>$value['pr_file'],'name'=>$value['pr_file_filename']),'default',true);?>'">
+							<td><?php echo $value['pr_name'] ?></td>
+							<td class="text-center">
+								<?php echo ($value['pr_modified'])?date('d/m/Y',$value['pr_modified']):'N/E'; ?>
+							</td>
+							<td class="text-right">
+								<a href="javascript:void(0)"><span class="glyphicon glyphicon-download-alt"></span> <span class="hidden-xs">Descargar</span></a>
+							</td>
+						</tr>
+					<?php endforeach;?>
+				</tbody>
+			</table>
+		<?php else: ?>
+			<p>No se encontraron resultados</p>
+		<?php endif;?>
+	</div>
+</div>

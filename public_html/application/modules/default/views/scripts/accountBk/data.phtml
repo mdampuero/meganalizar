@@ -1,0 +1,74 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'micuenta'); ?>">Mi Cuenta</a></li>
+	<li class="breadcrumb-item active">Mis datos</li>
+</ol>
+<div class="row myAccount">
+	<?php echo $this->render('account/partial/menu.phtml'); ?>
+	<div class="col-sm-9">
+		<h2>Mis datos</h2>
+		<hr class="condensed">
+		<form method="POST">
+			<div class="form-container">
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label>Nombre completo</label>
+						<input type="text" name="nombre" placeholder="Nombre completo" class="form-control noRadius" value="<?php echo $this->login['BNombre'] ?>">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label>Matrícula</label>
+						<input placeholder="Matrícula" class="form-control noRadius" value="<?php echo $this->login['BMatricula'] ?>" disabled='disabled'>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label>Contraseña</label>
+						<input type="password" name="contrasenia" autocomplete="new-password" placeholder="" class="form-control noRadius">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label>Repita contraseña </label>
+						<input type="password" name="contrasenia2" autocomplete="new-password" placeholder="" class="form-control noRadius">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label>Email</label>
+						<input type="text" name="email" placeholder="Email" class="form-control noRadius" value="<?php echo $this->login['BEmail'] ?>">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label>Dirección</label>
+						<input type="text" name="direccion" placeholder="Dirección" class="form-control noRadius" value="<?php echo $this->login['BDireccion'] ?>">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label>Localidad</label>
+						<input type="text" name="localidad" placeholder="Localidad" class="form-control noRadius" value="<?php echo $this->login['BLocalidad'] ?>">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label>Teléfono</label>
+						<input type="text" name="telefono" placeholder="Teléfono" class="form-control noRadius" value="<?php echo $this->login['BTelefono'] ?>">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label>DNI/CUIT/CUIL</label>
+						<input type="text" name="documento" placeholder="DNI/CUIT/CUIL" class="form-control noRadius" value="<?php echo $this->login['BDni'] ?>">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label>Celular</label>
+						<input type="text" name="celular" placeholder="Celular" class="form-control noRadius" value="<?php echo $this->login['BCelular'] ?>">
+					</div>
+				</div>
+				<div class="checkbox">
+					<label><input type="checkbox" value="1" name="envio" <?php echo ($this->login['BEnvio']=='1')?"checked='checked'":""; ?>>Deseo recibir los resultados de las muestras en mi correo</label>
+				</div>
+			</div>
+			<hr class="condensed">
+			<div class="btn-group pull-right">
+				<button class="btn btn-default noRadius" type="button" onclick="location.href='<?php echo $this->url(array(),'micuenta'); ?>'">Cancelar</button>
+				<button class="btn btn-primary noRadius" type="submit">Aceptar</button>
+			</div>
+		</form>
+	</div>
+</div>

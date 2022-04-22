@@ -1,0 +1,234 @@
+<ul class="nav" id="side-menu">
+    <?php if (!@in_array('index', $this->loginInfo["accessRestring"]["controllers"])): ?>
+        <li>
+            <a <?php echo("index" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index', 'action' => 'rm'), '', true); ?>">
+                <i class="fa fa-home fa-fw"></i> Inicio
+            </a>
+        </li>
+    <?php endif; ?>
+    <?php if (
+        !@in_array('news', $this->loginInfo["accessRestring"]["controllers"]) AND 
+        !@in_array('newsletters', $this->loginInfo["accessRestring"]["controllers"]) 
+        ): ?>
+    <li <?php
+    echo(
+        "news" == $this->parameters["controller"] || 
+        "newsletters" == $this->parameters["controller"]) ? "class='active'" : "";
+        ?>>
+        <a href="#"><i class="fa fa-newspaper-o fa-fw"></i></i> Newsletters<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <?php if (!@in_array('news', $this->loginInfo["accessRestring"]["controllers"])): ?>
+                <li>
+                    <a <?php echo("news" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'news', 'action' => 'index'), '', true); ?>">
+                        <i class="fa fa-file-text-o fa-fw"></i> Noticias
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if (!@in_array('newsletters', $this->loginInfo["accessRestring"]["controllers"])): ?>
+                <li>
+                    <a <?php echo("newsletters" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'newsletters', 'action' => 'index'), '', true); ?>">
+                        <i class="fa fa-paper-plane-o fa-fw"></i> Newsletters
+                    </a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </li>
+<?php endif; ?>
+<?php if (
+    !@in_array('labs', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('sectors', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('methods', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('determinations', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('equipments', $this->loginInfo["accessRestring"]["controllers"])  
+    ): ?>
+<li <?php
+echo(
+    "labs" == $this->parameters["controller"] || 
+    "sectors" == $this->parameters["controller"] || 
+    "determinations" == $this->parameters["controller"] || 
+    "methods" == $this->parameters["controller"] || 
+    "equipments" == $this->parameters["controller"]) ? "class='active'" : "";
+    ?>>
+    <a href="#"><i class="fa fa-flask fa-fw"></i></i> Determinaciones<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <?php if (!@in_array('determinations', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("determinations" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'determinations', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-book fa-fw"></i> Determinaciones
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('sectors', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("sectors" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'sectors', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-server fa-fw"></i> Sectores
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('equipments', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("equipments" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipments', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-desktop fa-fw"></i> Equipos
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('methods', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("methods" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'methods', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-cogs fa-fw"></i> Métodos
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('labs', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("labs" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'labs', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-building fa-fw"></i> Laboratorios
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</li>
+<?php endif; ?>
+<?php if (
+    !@in_array('biochemicals', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('groups', $this->loginInfo["accessRestring"]["controllers"]) 
+    ): ?>
+<li <?php
+echo(
+    "biochemicals" == $this->parameters["controller"] || 
+    "groups" == $this->parameters["controller"]) ? "class='active'" : "";
+    ?>>
+    <a href="#"><i class="fa fa-user-md fa-fw"></i></i> Bioquímicos<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <?php if (!@in_array('groups', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("groups" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'groups', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-users fa-fw"></i> Grupos
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('biochemicals', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("biochemicals" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'biochemicals', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-user fa-fw"></i> Bioquímicos
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</li>
+<?php endif; ?>
+<?php if (!@in_array('helps', $this->loginInfo["accessRestring"]["controllers"])): ?>
+    <li>
+        <a <?php echo("helps" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'helps', 'action' => 'index'), '', true); ?>">
+            <i class="fa fa-info fa-fw"></i> Datos Útiles
+        </a>
+    </li>
+<?php endif; ?>
+<?php if (!@in_array('samplings', $this->loginInfo["accessRestring"]["controllers"])): ?>
+    <li>
+        <a <?php echo("samplings" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'samplings', 'action' => 'index'), '', true); ?>">
+            <i class="fa fa-info fa-fw"></i> Toma de muestras
+        </a>
+    </li>
+<?php endif; ?>
+<?php if (!@in_array('prices', $this->loginInfo["accessRestring"]["controllers"])): ?>
+    <li>
+        <a <?php echo("prices" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'prices', 'action' => 'index'), '', true); ?>">
+            <i class="fa fa-usd fa-fw"></i> Listas de precios
+        </a>
+    </li>
+<?php endif; ?>
+<?php if (!@in_array('billings', $this->loginInfo["accessRestring"]["controllers"])): ?>
+    <li>
+        <a <?php echo("billings" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'billings', 'action' => 'index'), '', true); ?>">
+            <i class="fa fa-file-text-o fa-fw"></i> Detalle de facturación
+        </a>
+    </li>
+<?php endif; ?>
+<?php if (
+    !@in_array('roles', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('admin', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('log', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('apiuser', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('setting', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('slider', $this->loginInfo["accessRestring"]["controllers"]) AND 
+    !@in_array('maintenance', $this->loginInfo["accessRestring"]["controllers"]) 
+    ): ?>
+<li <?php
+echo(
+    "maintenance" == $this->parameters["controller"] || 
+    "admin" == $this->parameters["controller"] || 
+    "admin" == $this->parameters["controller"] || 
+    "log" == $this->parameters["controller"] || 
+    "roles" == $this->parameters["controller"] || 
+    "apiuser" == $this->parameters["controller"] || 
+    "setting" == $this->parameters["controller"]) ? "class='active'" : "";
+    ?>>
+    <a href="#"><i class="fa fa-wrench fa-fw"></i></i> Configuración<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <?php if (!@in_array('slider', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("slider" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'slider', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-camera fa-fw"></i> Slider
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('roles', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("roles" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'roles', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-sitemap fa-fw"></i> Roles de Administradores
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('log', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("log" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'log', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-database fa-fw"></i> Log
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('admin', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("admin" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'admin', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-users fa-fw"></i> Administradores
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('apiuser', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("apiuser" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'apiuser', 'action' => 'index'), '', true); ?>">
+                    <i class="fa fa-user-secret fa-fw"></i> Usuarios Api 
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('setting', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("setting" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'setting', 'action' => 'detail', 'id' => 1), '', true); ?>">
+                    <i class="fa fa-cogs fa-fw"></i> General
+                </a>
+            </li>
+        <?php endif; ?>
+        <?php if (!@in_array('maintenance', $this->loginInfo["accessRestring"]["controllers"])): ?>
+            <li>
+                <a <?php echo("maintenance" == $this->parameters["controller"]) ? "class='active'" : ""; ?> href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'maintenance'), '', true); ?>">
+                    <i class="fa fa-flash fa-fw"></i> Mantenimiento
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</li>
+<?php endif; ?>
+<li class="visible-xs">
+    <a href="#"><i class="fa fa-user fa-fw"></i></i> Mi Cuenta<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'edit', 'id' => $this->loginInfo["IDUser"]), '', true); ?>">
+                <i class="fa fa-edit fa-fw"></i> Mi Perfil
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'login', 'action' => 'logout'), '', true); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        </li>
+    </ul>
+</li>
+</ul>

@@ -1,0 +1,25 @@
+<div class="col-sm-3 hidden-print">
+	<div class="list-group noRadius hidden-xs">
+		<a href="#" class="list-group-item active">
+			MI CUENTA
+		</a>
+		<a href="<?php echo $this->url(array(),'micuenta',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='index')?'current':''; ?>"><i class="fa fa-flask" aria-hidden="true"></i> Resultados</a>
+		<a href="<?php echo $this->url(array(),'misdatos',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='data')?'current':''; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Mis datos</a>
+		<a href="<?php echo $this->url(array(),'precios',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='price')?'current':''; ?>"><i class="fa fa-usd" aria-hidden="true"></i> Listas de Precios</a>
+		<a href="<?php echo $this->url(array(),'facturacion',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='billing')?'current':''; ?>"><i class="fa fa-book" aria-hidden="true"></i> Facturación</a>
+		<a href="<?php echo $this->url(array('controller'=>'login','action'=>'logout'),'default',true) ?>" class="list-group-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
+	</div>
+	<div class="btn-group visible-xs" style="width: 100%;">
+		<ul class="dropdown-menu">
+			<li class="<?php echo ($this->parameters['action']=='index')?'active':''; ?>"><a href="<?php echo $this->url(array(),'micuenta',true) ?>"><i class="fa fa-flask" aria-hidden="true"></i> Resultados</a></li>
+			<li class="<?php echo ($this->parameters['action']=='data')?'active':''; ?>"><a href="<?php echo $this->url(array(),'misdatos',true) ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Mis datos</a></li>
+			<li class="<?php echo ($this->parameters['action']=='price')?'active':''; ?>"><a href="<?php echo $this->url(array(),'precios',true) ?>"><i class="fa fa-usd" aria-hidden="true"></i> Listas de Precios</a></li>
+			<li class="<?php echo ($this->parameters['action']=='billing')?'active':''; ?>"><a href="<?php echo $this->url(array(),'facturacion',true) ?>"><i class="fa fa-book" aria-hidden="true"></i> Facturación</a></li>
+			<li><a href="<?php echo $this->url(array('controller'=>'login','action'=>'logout'),'default',true) ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
+		</ul>
+		<button type="button"  class="btn btn-block btn-primary dropdown-toggle noRadius" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			MI CUENTA <i class="fa fa-bars" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div style="height: 50px;"></div>
+</div>

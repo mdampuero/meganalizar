@@ -1,0 +1,73 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <?php if (!$this->formDisabled): ?>
+            <div class="panel-heading">Seleccione los Bioquímicos</div>
+            <div class="panel-body condensed">
+                <div class="form-group">
+                    <?php foreach ($this->groups as $group => $biochemicals): $c++; ?>
+                        <h4>
+                            <div class="checkbox">
+                                <label for="group<?php echo $group ?>">
+                                    <input type="checkbox" id="group<?php echo $group ?>" class="all" group="<?php echo $c ?>">
+                                    <?php echo $group ?>
+                                </label>
+                            </div>
+                        </h4>
+                        <?php foreach ($biochemicals as $key => $biochemical): ?>
+                            <?php if ($biochemical["BNombre"]): $displays[]=$biochemical["IDBioquimico"]?>
+                                <div class="form-group col-sm-6 col-md-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="<?php echo $c ?>" name="biochemicals[]" value="<?php echo $biochemical["BEmail"] ?>"> <b><?php echo ucwords(strtolower($biochemical["BNombre"])) ?></b>
+                                        </label>
+                                    </div>
+                                </div>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        <div class="clearfix"></div>
+                        <hr>
+                    <?php endforeach ?>
+                    <h4>
+                        <div class="checkbox">
+                            <label for="group0">
+                                <input type="checkbox" id="group0" class="all" group="0">
+                                Sin agrupar
+                            </label>
+                        </div>
+                    </h4>
+                    <?php foreach ($this->biochemicals as $key => $biochemical): ?>
+                        <?php if ($biochemical["BNombre"] && !in_array($biochemical["IDBioquimico"],$displays)):?>
+                            <div class="form-group col-sm-6 col-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="0" name="biochemicals[]" value="<?php echo $biochemical["BEmail"] ?>"> <b><?php echo ucwords(strtolower($biochemical["BNombre"])) ?></b>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="panel-heading">Destinatarios</div>
+            <div class="panel-body condensed">
+                <?php foreach ($this->biochemicals as $key => $biochemical): ?>
+                    <?php if ($biochemical["nr_receiver"]):?>
+                        <div class="form-group col-sm-6 col-md-4">
+                            <label>
+                                <b><?php echo $biochemical["nr_receiver"] ?></b>
+                            </label>
+                        </div>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </div>
+        <?php endif ?>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.all').change(function() {
+        var checkboxes = $(this).closest('form').find(':checkbox.' + $(this).attr('group'));
+        checkboxes.prop('checked', $(this).is(':checked'));
+    });
+</script>

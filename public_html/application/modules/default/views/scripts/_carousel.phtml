@@ -1,0 +1,25 @@
+<?php if ($this->sliders): ?>
+    <header id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
+            <?php foreach ($this->sliders as $key => $data): ?>
+                <li data-target="#myCarousel" data-slide-to="<?php echo $key ?>" <?php echo ($key==0)?'class="active"':''; ?>></li>
+            <?php endforeach ?>
+        </ol>
+        <div class="carousel-inner">
+            <?php foreach ($this->sliders as $key => $data): ?>
+                <div class="item <?php echo ($key==0)?'active':''; ?>">
+                    <div class="fill" style="background-image:url('<?php echo $this->baseUrl()."/files/".$data["sl_picture"]; ?>');"></div>
+                    <div class="carousel-caption">
+                        <h2><?php echo $data["sl_name"] ?></h2>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+<?php endif ?>

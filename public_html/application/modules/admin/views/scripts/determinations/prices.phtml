@@ -1,0 +1,40 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Precios</div>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+                        <th>Laboratorio</th>
+                        <th class="text-center">Precio</th>
+                        <th>Valor de referencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->labs as $key => $lab): ?>
+                        <input type="hidden" id="input_<?php echo $key ?>_price" name="prices[<?php echo $key;?>][price]" value="<?php echo $this->labs_selected[$key]["de_la_price"]; ?>">
+                        <input type="hidden" id="input_<?php echo $key ?>_reference" name="prices[<?php echo $key;?>][reference]" value="<?php echo $this->labs_selected[$key]["de_la_reference_value"]; ?>">
+                        <tr onclick="editPrice('<?php echo $key ?>','<?php echo $lab ?>')">
+                            <td><?php echo $lab ?></td>
+                            <td class="text-center" id="<?php echo $key ?>_price">$ <?php echo $this->labs_selected[$key]["de_la_price"]; ?></td>
+                            <td id="<?php echo $key ?>_reference"><?php echo $this->labs_selected[$key]["de_la_reference_value"]; ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    <?php if($this->formDisabled != true) : ?>
+    function editPrice(la_id,la_name){
+        var price=$("#input_"+la_id+"_price").val();
+        var reference=$("#input_"+la_id+"_reference").val();
+        openModalScript('ajax','Precio de Laboratorio \''+la_name+'\'','','<?php echo $this->url(array('action'=>'loadlab'));?>/la_id/'+la_id+'/price/'+price+'/reference/'+reference,'500px','300px');
+    }
+    <?php else: ?>
+    function editPrice(la_id,la_name){
+        return;
+    }
+    <?php endif; ?>
+</script>

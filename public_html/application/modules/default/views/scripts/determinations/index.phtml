@@ -1,0 +1,92 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item active">Determinaciones</li>
+</ol>
+<div class="row myAccount">
+	<div class="col-sm-4">
+		<div class="list-group noRadius hidden-xs" style="font-size: 13px;">
+			<?php foreach ($this->sectors as $key => $value): ?>
+				<a href="<?php echo $this->url(array(),'determinaciones') ?>?sector=<?php echo $value['sc_id'] ?>" class="list-group-item <?php echo ($this->parameters['sector']==$value['sc_id'])?'active':''; ?>">
+					<?php echo $value['sc_name'] ?>
+				</a>
+			<?php endforeach ?>
+		</div>
+		<!-- Single button -->
+		<div class="btn-group visible-xs" style="width: 100%;">
+			<ul class="dropdown-menu">
+				<?php foreach ($this->sectors as $key => $value): ?>
+					<?php if ($this->parameters['sector']!=$value['sc_id']):?>
+						<li>
+							<a href="<?php echo $this->url(array(),'determinaciones') ?>?sector=<?php echo $value['sc_id'] ?>">
+								<?php echo $value['sc_name'] ?>
+							</a>
+						</li>
+					<?php else: ?>
+						<?php $current=$value['sc_name'] ?>
+					<?php endif; ?>
+
+				<?php endforeach ?>
+			</ul>
+			<button type="button"  class="btn btn-block btn-primary dropdown-toggle noRadius" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<?php echo $current ?> <i class="fa fa-bars" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div style="height: 50px;"></div>
+	</div>
+	
+	<div class="col-sm-8">
+		<div class="row">
+			<div class="col-sm-4">
+				<h2>Determinaciones</h2>
+			</div>
+			<div class="col-sm-8">
+				<div class="col-sm-6 col-sm-offset-6 input-group">
+					<input name="query" id="query" placeholder="Nombre/Nomenclador" class="noRadius form-control" onkeyup="is_enter(event);" type="text" value="<?php echo $this->parameters['query'] ?>">
+					<span class="input-group-addon noRadius">
+						<a href="javascript:filter()"><span class="glyphicon glyphicon-search"></span></a>
+					</span>
+				</div>
+			</div>
+		</div>
+		<hr class="condensed">
+		<?php if ($this->entities): ?>
+			<div class="table-responsive">
+				<table class="table table-condensed table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Nomenclador</th>
+							<th>Nombre</th>
+							<th class="text-right"></th>
+						</tr> 
+					</thead>
+					<tbody>
+						<?php foreach ($this->entities as $key => $value):?>
+							<tr class="hand" onclick="openModalScript('ajax','<b class=green><?php echo $value['de_nomenclature'] ?> - <?php echo $value['de_name'] ?></b>',null,'<?php echo $this->url(array('controller'=>'determinations','action'=>'get','popup'=>true,'estudio'=>$value['de_nomenclature']),'default');?>','70%','300px');">
+								<td><b><?php echo $value['de_nomenclature'] ?></b></td>
+								<td><?php echo $value['de_name'] ?></td>
+								<td class="text-right">
+									<a ><span class="glyphicon glyphicon-eye-open"></span> <span class="hidden-xs">Ver más</span></a>
+								</td>
+							</tr>
+						<?php endforeach;?>
+					</tbody>
+				</table>
+			</div>
+		<?php else: ?>
+			<p>No se encontraron resultados</p>
+		<?php endif;?>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function (){
+		$('#query').focus();
+	});
+	function filter(){
+		location.href='<?php echo $this->url(array(),'determinaciones'); ?>?query='+$("#query").val();
+	}
+	function is_enter(e) {
+		if (e.keyCode == 13) {
+			filter();
+		}
+	}
+</script>

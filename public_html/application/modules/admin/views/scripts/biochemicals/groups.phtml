@@ -1,0 +1,16 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Grupo de Bioquímico</div>
+        <div class="panel-body">
+            <?php foreach ($this->groups as $key => $eq): ?>
+                <div class="form-group col-md-3 col-sm-6">
+                    <div class="checkbox">
+                        <label >
+                        <input type="checkbox" <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> <?php echo (in_array($key,$this->groupsSelected))?"checked='checked'":""?> name="groups[<?php echo $key ?>]" value="1"> <b><?php echo $eq ?></b>
+                        </label>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+</div>

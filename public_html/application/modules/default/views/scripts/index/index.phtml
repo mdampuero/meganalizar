@@ -1,0 +1,147 @@
+<div class="row box-home" style="margin-top: -15px;">
+	<?php if ($this->sliders): ?>
+		<?php if (!$this->login): ?>
+			<div class="box-login text-center text-white">
+				<div class="box-white">
+					<h4></h4>
+					<div class="col-xs-12">
+						<form method="POST" action="<?php echo $this->url(array('controller'=>'login','action'=>'login'),'default',true) ?>">
+							<div class="form-group text-left">
+								<label>Matrícula</label>
+								<input type="text" name="matricula" placeholder="Ingrese su Matrícula" class="form-control noRadius">
+							</div>
+							<div class="form-group text-left">
+								<label>Contraseña</label>
+								<input type="password" name="clave" placeholder="Ingrese su Contraseña" class="form-control noRadius">
+							</div>
+							<br>
+							<button class="bg-orange">Ingresar</button>
+							<div class="checkbox text-left">
+								<label><input type="checkbox" value="1" checked="checked" name="recordarme">Recordarme</label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		<?php else: ?>
+			<div class="box-login text-center text-white">
+				<div class="box-white">
+					<h4></h4>
+					<div class="col-xs-12 text-center">
+						<div class="form-group">
+							<label>Bienvenido/a</label>
+						</div>
+						<div class="form-group text-center">
+							<label><?php echo $this->login['BNombre'] ?></label>
+						</div>
+						<div class="form-group text-center">
+							<label>Buscar muestra</label>
+							<input type="text" name="muestra" id="muestra" placeholder="Nº de muestra" class="form-control noRadius">
+						</div>
+						<br>
+						<button class="bg-orange" type="button" onclick="location.href='<?php echo $this->url(array(),'micuenta'); ?>?muestra='+$('#muestra').val()">Buscar</button>
+					</div>
+				</div>
+			</div>
+		<?php endif ?>
+		<header id="myCarousel" class="carousel slide">
+			<div class="carousel-inner">
+				<?php foreach ($this->sliders as $key => $data): ?>
+					<div class="item <?php echo ($key==0)?'active':''; ?>">
+						<div class="box-home" style="background-image: url(<?php echo HOST.$this->baseUrl()."/files/".$data["sl_picture"]; ?>)">
+
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</header>
+	<?php endif ?>
+</div>
+<hr>
+<div class="icon-lg">
+	<div class="row">
+		<div class="col-xs-6 col-md-3 text-center" onclick="location.href='<?php echo $this->url(array(),'notas'); ?>'">
+			<span class="fa-stack fa-lg green  transition">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
+			</span>
+			<h3>Notas</h3>
+		</div>
+		<div class="col-xs-6 col-md-3 text-center " onclick="location.href='<?php echo $this->url(array(),'organizacion'); ?>'">
+			<span class="fa-stack fa-lg green transition">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
+			</span>
+			<h3>Organización</h3>
+		</div>
+		<div class="col-xs-6 col-md-3 text-center " onclick="location.href='<?php echo $this->url(array(),'calidad'); ?>'">
+			<span class="fa-stack fa-lg green transition">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-check fa-stack-1x fa-inverse"></i>
+			</span>
+			<h3>Calidad</h3>
+		</div>
+		<div class="col-xs-6 col-md-3 text-center " onclick="location.href='<?php echo $this->url(array(),'contacto'); ?>'">
+			<span class="fa-stack fa-lg green transition">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+			</span>
+			<h3>Contacto</h3>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modalAniversary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:2%; overflow-y:visible;">
+    <div class="modal-dialog" id="modalAniversaryContent">
+        <div class="modal-content noRadius">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 id="titleModal" class="text-primary"><b>25º Aniversario de Meganalizar</h5>
+            </div>
+            <div class="modal-body  col-lg-12" id="">
+                <div id="corouselAniversary" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <video width="100%" controls autoplay>
+                                <source src="<?php echo HOST.$this->baseUrl()."/imgs/videos/" ?>video1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="item">
+                            <video width="100%" controls >
+                                <source src="<?php echo HOST.$this->baseUrl()."/imgs/videos/" ?>video2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" style="height: 83%;background:transparent;" href="#corouselAniversary" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" style="height: 83%;background:transparent;" href="#corouselAniversary" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+	$('.carousel').carousel({
+		interval: 10000
+	});
+
+	$('.carousel').carousel('cycle');
+	$(function (){
+        $("#modalAniversary").modal("show");
+        $('#corouselAniversary').carousel({
+            interval: 26000
+        });
+
+        $('#corouselAniversary').carousel('cycle');
+        $('#modalAniversary').on('hidden.bs.modal', function () {
+            $("#corouselAniversary .carousel-inner").html('');
+        })
+    });
+</script>

@@ -1,0 +1,31 @@
+<?php if ($this->entities): ?>
+	<table class="table">
+		<thead>
+			<tr>
+				<th >Nº de muestra</th>
+				<th class="text-center">Práctica</th>
+				<th class="text-right">Importe</th>
+			</tr> 
+		</thead>
+		<tbody>
+			<?php foreach ($this->entities as $key => $value): $total+=$value['bd_valor_practica']?>
+				<tr>
+					<td><?php echo $value['bd_nro_muestra'] ?></td>
+					<td class="text-center">
+						<?php echo $value['bd_cod_practica'] ?>
+					</td>
+					<td class="text-right">
+						<b>$ <?php echo number_format($value['bd_valor_practica'],2,',','.') ?></b>
+					</td>
+				</tr>
+			<?php endforeach;?>
+			<tr>
+				<td class="text-right" colspan="3">
+					<b>TOTAL: $ <?php echo number_format($total,2,',','.') ?></b>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<?php else: ?>
+	<p>No se encontraron resultados</p>
+<?php endif;?>

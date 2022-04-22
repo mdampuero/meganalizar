@@ -1,0 +1,21 @@
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Información Adicional</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Valor de Referencia</label>
+                    <textarea <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> class="form-control" name="de_reference_value"><?php echo $this->result["de_reference_value"] ?></textarea>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Indicaciones al paciente</label>
+                    <textarea <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> class="form-control" name="de_patient_indication"><?php echo $this->result["de_patient_indication"] ?></textarea>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Indicaciones al bioquímico</label>
+                    <textarea <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> class="form-control" name="de_biochemical_indication"><?php echo $this->result["de_biochemical_indication"] ?></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
