@@ -21,7 +21,7 @@ class EmailsController extends ControllerDefault {
 	}
 
 	public function indexAction() {
-		try {
+		/*try {
 			$matricula = $this->model_resultados->showMatriculaAviso();
 			if ($matricula) {
 				foreach($matricula as $bioquimico){
@@ -50,7 +50,7 @@ class EmailsController extends ControllerDefault {
 			exit();
 		} catch (Zend_Exception $exc) {
 			throw new Zend_Exception($exc->getMessage(), $exc->getCode());
-		}
+		}*/
 	}
 	public function testAction() {
 		try {

@@ -6,21 +6,14 @@ require_once 'PHPMailer/PHPMailerAutoload.php';
 class Zend_Controller_Action_Helper_Mail extends Zend_Controller_Action_Helper_Abstract {
 
     public function __construct() {
-        $this->host = 'vps-2099834-x.dattaweb.com';
-        $this->port = 465;
-        $this->username = 'resultados@meganalizar.com.ar';
-        $this->password = 'EZGQ@*a8fF';
-        $this->email = 'resultados@meganalizar.com.ar';
-        $this->name = 'Meganalizar S.A.';
-        $this->secure = 'ssl';
-
-        // $this->host = 'smtp.gmail.com';
-        // $this->port = 465;
-        // $this->username = 'meganalizarsa@gmail.com';
-        // $this->password = 'secreta007';
-        // $this->email = 'meganalizarsa@gmail.com';
-        // $this->name = 'Meganalizar S.A.';
-        // $this->secure = 'ssl';
+        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV );
+        $this->host = $config->mail->host; 
+        $this->port = $config->mail->port; 
+        $this->username = $config->mail->username; 
+        $this->password = $config->mail->password; 
+        $this->email = $config->mail->email; 
+        $this->name = $config->mail->name; 
+        $this->secure = $config->mail->secure;
     }
     
     
@@ -43,7 +36,6 @@ class Zend_Controller_Action_Helper_Mail extends Zend_Controller_Action_Helper_A
         if($toEmail=='labmolina@hotmail.com' || $toEmail=='labmolina@hotmail.com'){
             $this->mail->AddCC('mdampuero@gmail.com', 'Mauricio Ampuero');
         }
-        // $this->mail->AddCC('mdampuero@gmail.com', 'Mauricio Ampuero');
         $toEmail=explode(',', $toEmail);
         if(count($toEmail)>0){
             foreach ($toEmail as $key => $email) {
