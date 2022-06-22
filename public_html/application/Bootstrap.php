@@ -79,8 +79,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         // $route = new Zend_Controller_Router_Route ('Api/Muestras.json',array('module' => 'api','controller' => 'muestras','action'  => 'index'));
         // $router->addRoute('Api/Muestras.json', $route);
         
-       /* $route = new Zend_Controller_Router_Route ('Api/Resultados.json',array('module' => 'api','controller' => 'muestras','action'  => 'index'));
-        $router->addRoute('Api/Resultados.json', $route);*/
+        $route = new Zend_Controller_Router_Route ('Api/Resultados.json',array('module' => 'api','controller' => 'muestras','action'  => 'index'));
+        $router->addRoute('Api/Resultados.json', $route);
         
         /*$route = new Zend_Controller_Router_Route ('Api/Determinaciones.json',array('module' => 'api','controller' => 'determinaciones','action'  => 'get'));
         $router->addRoute('Api/Determinaciones.json', $route);*/
