@@ -51,7 +51,10 @@ foreach ($this->fields as $key => $field) {
                                     if ($field['link']):
                                         $result[$field["field"]] = "<a href='" . $field['link'] . "/id/" . $result[$this->fields[0]["field"]] . "' title='" . $field['title'] . "' target='" . $field['target'] . "'><img src='" . $this->baseUrl() . "/files/" . $result[$field["field"]] . "' class='img-thumbnail cut' width='" . $field["width"] . "'></a>";
                                     else:
-                                        $result[$field["field"]] = "<img src='" . $this->baseUrl() . "/files/" . $result[$field["field"]] . "' class='img-thumbnail cut' width='" . $field["width"] . "'>";
+                                        if(!empty($result[$field["field"]]) && file_exists(PATH_IMG.$result[$field["field"]]))
+                                            $result[$field["field"]] = "<img src='" . $this->baseUrl() . "/files/" . $result[$field["field"]] . "' class='img-thumbnail cut' width='" . $field["width"] . "'>";
+                                        else
+                                            $result[$field["field"]] = "<img src='" . $this->baseUrl() . "/imgs/no-picture.png' class='img-thumbnail cut' width='" . $field["width"] . "'>";
                                     endif;
                                 }
                                 if ($field['type'] == 'money') {

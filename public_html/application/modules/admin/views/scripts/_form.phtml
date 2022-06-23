@@ -32,7 +32,7 @@
                                 <?php if (!empty($this->result[$this->fields[$key]["field"]]) && file_exists(PATH_IMG . $this->result[$this->fields[$key]["field"]])): ?>
                                     <img class="thumbnail" style="max-width:100%;" src="<?php echo $this->baseUrl() . URL_IMG . $this->result[$this->fields[$key]["field"]]; ?>"/>
                                 <?php else: ?>
-                                    <img class="thumbnail" width="100%" data-src="holder.js/<?php echo $this->fields[$key]["x"] ?>x<?php echo $this->fields[$key]["y"] ?>?auto=yes">
+                                    <img class="thumbnail" width="100%" src="<?php echo $this->baseUrl() . "/imgs/no-picture.png";?>">
                                 <?php endif; ?>
                             </div>
                             <div class="col-xs-6">
@@ -248,7 +248,7 @@
                 <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-6">
                     <label for="<?php echo $this->fields[$key]["field"] ?>"><?php echo $this->fields[$key]["label"] ?> <?php echo ($this->fields[$key]["required"]) ? "*" : ""; ?></label>
                     <input <?php echo $this->fields[$key]["attr"] ?> <?php echo ($this->formDisabled == true) ? " disabled " : ""; ?> 
-                    value="<?php echo ($this->result[$this->fields[$key]["field"]]!="0000-00-00")?date("d/m/Y",strtotime($this->result[$this->fields[$key]["field"]])):"";  ?>" type="text" id="<?php echo $this->fields[$key]["field"] ?>" name="<?php echo $this->fields[$key]["field"] ?>" 
+                    value="<?php echo ($this->result[$this->fields[$key]["field"]]!="0000-00-00" && $this->result[$this->fields[$key]["field"]]!="")?date("d/m/Y",strtotime($this->result[$this->fields[$key]["field"]])):date("d/m/Y");  ?>" type="text" id="<?php echo $this->fields[$key]["field"] ?>" name="<?php echo $this->fields[$key]["field"] ?>"
                     <?php if($field["calendar"]==true): ?>
                         class="calendar form-control" readonly="true"
                     <?php else:?>

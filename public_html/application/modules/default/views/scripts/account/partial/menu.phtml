@@ -5,6 +5,7 @@
 		</a>
 		<a href="<?php echo $this->url(array(),'micuenta',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='index')?'current':''; ?>"><i class="fa fa-flask" aria-hidden="true"></i> Resultados</a>
 		<a href="<?php echo $this->url(array(),'misdatos',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='data')?'current':''; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Mis datos</a>
+        <a href="<?php echo $this->url(array(),'notas',true) ?>" class="list-group-item"><i class="fa fa fa-newspaper-o" aria-hidden="true"></i> Notificaciones <span class="badge" style="background-color: red"><?php echo (count($this->login["notifications"]))?count($this->login["notifications"]):'';?></span></a>
 		<a href="<?php echo $this->url(array(),'precios',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='price')?'current':''; ?>"><i class="fa fa-usd" aria-hidden="true"></i> Listas de Precios</a>
 		<a href="<?php echo $this->url(array(),'facturacion',true) ?>" class="list-group-item <?php echo ($this->parameters['action']=='billing')?'current':''; ?>"><i class="fa fa-book" aria-hidden="true"></i> Facturación</a>
 		<a href="<?php echo $this->url(array('controller'=>'login','action'=>'logout'),'default',true) ?>" class="list-group-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>

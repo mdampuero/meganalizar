@@ -5,15 +5,18 @@
 <h2 class="gray">Notas</h2>
 <hr class="condensed">
 <?php foreach ($this->entities as $key => $entity): ?>
-	<div class="row box-news hand transition" onclick="location.href='<?php echo $this->url(array('id'=>$entity["ne_id"]),'nota'); ?>'">
+    <div class="row box-news hand transition" style="<?php echo (in_array($entity["ne_id"],$this->login["notifications"]))?"background-color:#EEE;":"";?>" onclick="location.href='<?php echo $this->url(array('id'=>$entity["ne_id"]),'nota'); ?>'" >
 		<div class="col-sm-4 ">
-			<div class="fill" style="border: #DDD solid 1px; height:200px; background-image: url(<?php echo $this->baseUrl()."/files/".$entity["ne_picture"]; ?>)">
-			</div>
+            <?php if(!empty($entity["ne_picture"]) && file_exists(PATH_IMG.$entity["ne_picture"])):?>
+			    <div class="fill" style="border: #DDD solid 1px; height:200px; background-image: url(<?php echo $this->baseUrl()."/files/".$entity["ne_picture"]; ?>)"></div>
+            <?php else: ?>
+			    <div class="fill" style="border: #DDD solid 1px; height:200px; background-image: url(<?php echo $this->baseUrl()."/imgs/no-picture.png"; ?>)"></div>
+            <?php endif;?>
 		</div>
 		<div class="col-sm-8">
 			<h3 class="title green"><?php echo ucfirst(strtolower($entity["ne_title"]));?></h3>
 			<p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> <?php echo date("d/m/Y",strtotime($entity["ne_date"]));?></p>
-			<p><?php echo CutText(nl2br($entity["ne_description"]),25); ?></p>
+			<p><?php echo CutText(nl2br(strip_tags($entity["ne_description"])),25); ?></p>
 		</div>
 	</div>
 	<hr>

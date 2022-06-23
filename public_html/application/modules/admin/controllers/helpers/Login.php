@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Notification.php';
+
 class Zend_Controller_Action_Helper_Login extends Zend_Controller_Action_Helper_Abstract {
 
     public $session;
@@ -109,6 +111,7 @@ class Zend_Controller_Action_Helper_Login extends Zend_Controller_Action_Helper_
     public function loginInPublic($user = null) {
         if ($user) {
             $this->session_public->user = $user;
+
             return true;
         } else {
             return false;
@@ -127,6 +130,8 @@ class Zend_Controller_Action_Helper_Login extends Zend_Controller_Action_Helper_
             endif;
             return null;
         }
+        $notification = new Model_DBTable_Notification();
+        $this->session_public->user["notifications"]=$notification->getByBioquimico($this->session_public->user["IDBioquimico"]);
         return $this->session_public->user;
     }
 

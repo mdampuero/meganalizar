@@ -8,6 +8,8 @@
 
 require_once 'New.php';
 require_once 'Controller.php';
+require_once 'Bioquimico.php';
+require_once 'Notification.php';
 
 class Admin_NewsController extends Controller {
 
@@ -39,5 +41,32 @@ class Admin_NewsController extends Controller {
         );
         parent::init($fields, $actions, $options);
         $this->model = new Model_DBTable_New();
+    }
+
+    public function addAction() {
+        try {
+            if ($this->getRequest()->isPost()) {
+                $this->data = $this->_helper->Form->isValid($this->fields);
+                $id = $this->model->add($this->data);
+                $notification = new Model_DBTable_Notification();
+                $bioquimicos = new Model_DBTable_Bioquimico();
+                $users=$bioquimicos->showAll();
+                foreach ($users as $user){
+                    $notification->save([
+                        'ne_id'=>$id,
+                        'us_id'=>$user["IDBioquimico"],
+                        'is_read'=>0,
+                    ]);
+                }
+                $this->_helper->flashMessenger->addMessage(array('type' => 'success', 'message' => MESSAGE_NEW));
+                $this->_helper->Redirector->gotoSimple('add', null, null);
+            }
+            $this->view->title = $this->title . ' / Nuevo';
+            $this->view->token = $this->_helper->Form->setToken();
+            $this->renderScript('_form.phtml');
+        } catch (Zend_Exception $exc) {
+            $this->_helper->flashMessenger->addMessage(array('type' => 'danger', 'message' => $exc->getMessage(), 'data' => $this->getRequest()->getPost()));
+            $this->_helper->Redirector->gotoSimple('add');
+        }
     }
 }

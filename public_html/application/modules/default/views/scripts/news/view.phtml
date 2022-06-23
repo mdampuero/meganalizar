@@ -7,7 +7,11 @@
 <hr class="condensed">
 <div class="row">
 	<div class=" pull-left col-sm-5">
+        <?php if(!empty($this->entity["ne_picture"]) && file_exists(PATH_IMG.$this->entity["ne_picture"])):?>
 		<img src="<?php echo $this->baseUrl()."/files/".$this->entity["ne_picture"]; ?>" class="img-responsive">
+        <?php else: ?>
+            <img src="<?php echo $this->baseUrl()."/imgs/no-picture.png"; ?>" class="img-responsive">
+        <?php endif;?>
 	</div>
 	<div class="pull-right col-sm-7" >
 		<p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> <?php echo date("d/m/Y",strtotime($this->entity["ne_date"]));?></p>
