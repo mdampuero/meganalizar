@@ -43,5 +43,8 @@ class Model_DBTable_Notification extends Zend_Db_Table_Abstract {
     public function removeBy($ne_id,$us_id){
         return $this->delete('us_id = ' . (int) $us_id.' AND ne_id='.$ne_id);
     }
+    public function removeByNew($ne_id){
+        return $this->delete('ne_id='.$ne_id);
+    }
 }
 ?>

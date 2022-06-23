@@ -27,7 +27,7 @@
                 <li class="visible-xs <?php echo ($this->parameters["controller"]=="account")?"active":"";?>">
                     <a href="<?php echo $this->url(array(),'micuenta'); ?>" title="Mi cuenta">
                         <?php if ($this->login): ?>
-                            MI CUENTA (<?php echo $this->login['BMatricula'] ?>)
+                            MI CUENTA (<?php echo $this->login['BMatricula'] ?>) <span class="badge" style="background-color: red"><?php echo (count($this->login["notifications"]))?count($this->login["notifications"]):'';?></span>
                         <?php else: ?>
                             INICIAR SESIÓN
                         <?php endif;?>

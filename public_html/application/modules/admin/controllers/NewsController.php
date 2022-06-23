@@ -69,4 +69,16 @@ class Admin_NewsController extends Controller {
             $this->_helper->Redirector->gotoSimple('add');
         }
     }
+    public function deleteAction() {
+        try {
+            $this->_helper->viewRenderer->setNoRender(TRUE);
+            if ($this->getRequest()->isPost()) {
+                $notification = new Model_DBTable_Notification();
+                $this->model->delete_slow($this->getRequest()->getPost('id'));
+                $notification->removeByNew($this->getRequest()->getPost('id'));
+            }
+        } catch (Zend_Exception $exc) {
+            exit($exc->getMessage());
+        }
+    }
 }
