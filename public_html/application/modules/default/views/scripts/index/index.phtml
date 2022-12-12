@@ -65,7 +65,7 @@
 				<i class="fa fa-circle fa-stack-2x"></i>
 				<i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
 			</span>
-			<h3>Notas <span class="badge" style="display: initial; background-color: red"><?php echo (count($this->login["notifications"]))?count($this->login["notifications"]):'';?></span></h3>
+			<h3>Notas <?php if(count($this->login["notifications"])): ?><span class="badge" style="display: initial; background-color: red"><?php echo (count($this->login["notifications"]))?count($this->login["notifications"]):'';?></span><?php endif;?></h3>
 		</div>
 		<div class="col-xs-6 col-md-3 text-center " onclick="location.href='<?php echo $this->url(array(),'organizacion'); ?>'">
 			<span class="fa-stack fa-lg green transition">
