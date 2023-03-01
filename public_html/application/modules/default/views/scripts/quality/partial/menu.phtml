@@ -3,6 +3,9 @@
 		<a href="<?php echo $this->url(array(),'calidad'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='index')?'active':''; ?>">
 			Introducción
 		</a>
+        <a href="<?php echo $this->url(array(),'certificacion'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='certificate')?'active':''; ?>">
+			Certificación
+		</a>
 		<a href="<?php echo $this->url(array(),'politicas'); ?>" class="list-group-item <?php echo ($this->parameters['action']=='policies')?'active':''; ?>">
 			Políticas de calidad
 		</a>
@@ -21,6 +24,15 @@
 			<?php else: ?>
 				<?php $current='Introducción' ?>
 			<?php endif; ?>
+            <?php if ($this->parameters['action']!='certificate'):?>
+                <li>
+                    <a href="<?php echo $this->url(array(),'certificacion'); ?>">
+                        Certificación
+                    </a>
+                </li>
+            <?php else: ?>
+                <?php $current='Introducción' ?>
+            <?php endif; ?>
 			<?php if ($this->parameters['action']!='policies'):?>
 				<li>
 					<a href="<?php echo $this->url(array(),'politicas'); ?>">

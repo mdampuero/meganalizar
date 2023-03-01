@@ -1,0 +1,17 @@
+<ol class="breadcrumb noRadius">
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'inicio'); ?>">Inicio</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo $this->url(array(),'calidad'); ?>">Calidad</a></li>
+	<li class="breadcrumb-item active">Introducción</li>
+</ol>
+<div class="row myAccount">
+	<?php echo $this->render('quality/partial/menu.phtml'); ?>
+	<div class="col-sm-9">
+		<h2>Certificación</h2>
+		<hr class="condensed">
+        <img class="img-responsive" src="<?php echo $this->baseUrl() . '/imgs/certificacion.png'?>">
+		<br>
+        <p><b>Meganalizar</b>, acreditado por la Fundación Bioquímica Argentina según el manual <b>MA3</b> como laboratorio general.</p>
+		<p>La Fundación Bioquímica evalúa a los laboratorios de análisis clínicos de acuerdo a los estándares de calidad establecidos en el Manual MA3 del Programa de Acreditación de Laboratorios (PAL).</p>
+
+	</div>
+</div>

@@ -16,6 +16,9 @@ class QualityController extends ControllerDefault {
 	public function indexAction() {
 		
 	}
+    public function certificateAction() {
+
+	}
 	public function policiesAction() {
 		
 	}

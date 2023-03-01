@@ -21,6 +21,7 @@ class Admin_SliderController extends Controller {
         $fields = array(
             array('field' => 'sl_id', 'label' => 'ID', 'list' => true, 'class' => 'id', 'order' => true),
             array('field' => 'sl_name', 'label' => 'Título', 'required' => 'required', 'list' => true, 'search' => true, 'order' => true),
+            array('field' => 'sl_link', 'label' => 'Link'),
             array('field' => 'sl_picture', 'label' => 'Imagen', 'type' => 'image', 'order' => true, 'list' => true, 'width' => '100px'),
             array('field' => 'sl_status', 'label' => 'Habilitado', 'class' => 'visible-lg visible-md visible-sm', 'list' => true, 'order' => true, 'type' => 'combo', 'data' => array('0' => 'NO', '1' => 'SI')),
             array('field' => 'sl_order', 'label' => 'Orden', 'list' => true, 'order' => true, 'type' => 'number'),

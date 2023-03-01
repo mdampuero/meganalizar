@@ -48,7 +48,7 @@
 			<div class="carousel-inner">
 				<?php foreach ($this->sliders as $key => $data): ?>
 					<div class="item <?php echo ($key==0)?'active':''; ?>">
-						<div class="box-home" style="background-image: url(<?php echo HOST.$this->baseUrl()."/files/".$data["sl_picture"]; ?>)">
+						<div class="box-home" <?php if($data["sl_link"]):?> onclick="location.href='<?php echo $data["sl_link"];?>'" <?php endif;?> style="<?php if($data["sl_link"]):?>cursor:pointer; <?php endif;?> background-image: url(<?php echo HOST.$this->baseUrl()."/files/".$data["sl_picture"]; ?>)">
 
 						</div>
 					</div>
@@ -90,15 +90,16 @@
 		</div>
 	</div>
 </div>
-<!--<div class="modal fade" id="modalAniversary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:2%; overflow-y:visible;">-->
-<!--    <div class="modal-dialog" id="modalAniversaryContent">-->
-<!--        <div class="modal-content noRadius">-->
-<!--            <div class="modal-header">-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-<!--                <h5 id="titleModal" class="text-primary"><b>25º Aniversario de Meganalizar</h5>-->
-<!--            </div>-->
-<!--            <div class="modal-body  col-lg-12" id="">-->
-<!--                <div id="corouselAniversary" class="carousel slide">-->
+<div class="modal fade" id="modalAniversary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:2%; overflow-y:visible;">
+    <div class="modal-dialog" id="modalAniversaryContent">
+        <div class="modal-content noRadius">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 id="titleModal" class="text-primary"><b>Aviso Importante!</h5>
+            </div>
+            <div class="modal-body  col-lg-12 text-center" id="">
+                <h5>El día Martes 20 de Diciembre de 2022 nuestro laboratorio trabajará con total normalidad.<br/><br/>Muchas gracias por su atención.</h5>
+                <div id="corouselAniversary" class="carousel slide">
 <!--                    <div class="carousel-inner">-->
 <!--                        <div class="item active">-->
 <!--                            <video width="100%" controls autoplay>-->
@@ -121,27 +122,27 @@
 <!--                        <span class="glyphicon glyphicon-chevron-right"></span>-->
 <!--                        <span class="sr-only">Next</span>-->
 <!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<script>-->
-<!--	$('.carousel').carousel({-->
-<!--		interval: 10000-->
-<!--	});-->
-<!---->
-<!--	$('.carousel').carousel('cycle');-->
-<!--	$(function (){-->
-<!--        $("#modalAniversary").modal("show");-->
-<!--        $('#corouselAniversary').carousel({-->
-<!--            interval: 26000-->
-<!--        });-->
-<!---->
-<!--        $('#corouselAniversary').carousel('cycle');-->
-<!--        $('#modalAniversary').on('hidden.bs.modal', function () {-->
-<!--            $("#corouselAniversary .carousel-inner").html('');-->
-<!--        })-->
-<!--    });-->
-<!--</script>-->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+	$('.carousel').carousel({
+		interval: 10000
+	});
+
+	$('.carousel').carousel('cycle');
+	$(function (){
+        //$("#modalAniversary").modal("show");
+        // $('#corouselAniversary').carousel({
+        //     interval: 26000
+        // });
+        //
+        // $('#corouselAniversary').carousel('cycle');
+        // $('#modalAniversary').on('hidden.bs.modal', function () {
+        //     $("#corouselAniversary .carousel-inner").html('');
+        // })
+    });
+</script>

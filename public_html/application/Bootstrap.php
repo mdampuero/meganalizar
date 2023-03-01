@@ -46,6 +46,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $route = new Zend_Controller_Router_Route ('Calidad/PolíticasDeCalidad',array('module' => 'default','controller' => 'quality','action'  => 'policies'));
         $router->addRoute('politicas', $route);
 
+        $route = new Zend_Controller_Router_Route ('Calidad/Certificacion',array('module' => 'default','controller' => 'quality','action'  => 'certificate'));
+        $router->addRoute('certificacion', $route);
+
         $route = new Zend_Controller_Router_Route ('Calidad/ObjetivosGenerales',array('module' => 'default','controller' => 'quality','action'  => 'target'));
         $router->addRoute('objetivos', $route);
 
