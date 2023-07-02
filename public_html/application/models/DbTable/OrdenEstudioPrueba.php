@@ -67,11 +67,16 @@ class Model_DBTable_OrdenEstudioPrueba extends Model {
             $select->joinLeft("apachecms_orden_estudio AS oe", $this->_name.".op_oe_id=oe.oe_id", array("oe_codigo_estudio","oe_nombre_estudio","oe_id"));
             $select->joinLeft("apachecms_orden AS o", "oe.oe_or_id=o.or_id", array(null));
             $select->order('op_id ASC');
-            // $select->group('oe_');
+            // $select->group('oe_id');
             $resultsObject = $this->fetchAll($select);
             $results=($resultsObject)?$resultsObject->toArray():null;
             if(!$results) return null;
+            $repeatCode=[];
             foreach ($results as $key => $result) {
+                if(in_array($result['oe_codigo_estudio'],$repeatCode)){
+                    continue;
+                }
+                $repeatCode[]=$result['oe_codigo_estudio'];
                 $response[$result['oe_id']]['oe_codigo_estudio']=$result['oe_codigo_estudio'];
                 $response[$result['oe_id']]['oe_nombre_estudio']=$result['oe_nombre_estudio'];
                 $response[$result['oe_id']]['practicas'][]=$result;
@@ -95,6 +100,34 @@ class Model_DBTable_OrdenEstudioPrueba extends Model {
             $select->joinLeft("apachecms_orden_estudio AS oe", $this->_name.".op_oe_id=oe.oe_id");
             $select->joinLeft("apachecms_orden AS o", "oe.oe_or_id=o.or_id");
             $select->order('op_id ASC');
+            // $select->group('oe_');
+            $resultsObject = $this->fetchAll($select);
+            $results=($resultsObject)?$resultsObject->toArray():null;
+            if(!$results) return null;
+            // foreach ($results as $key => $result) {
+            //     $response[$result['oe_id']]['oe_codigo_estudio']=$result['oe_codigo_estudio'];
+            //     $response[$result['oe_id']]['oe_nombre_estudio']=$result['oe_nombre_estudio'];
+            //     $response[$result['oe_id']]['practicas'][]=$result;
+            // }
+            return $results;
+        }catch (Zend_Exception $exc) {
+			echo '<pre>';
+            print_r($exc->getMessage());
+            echo '</pre>';
+            exit();
+		}
+    }
+    public function getAllByDates($date) {
+        try {
+            $select = $this->select();
+            $select->setIntegrityCheck(false);
+            $select->from(array($this->_name), array("*"));
+            $sort = ($sort == null) ? $this->defultSort : $sort;
+            $order = ($order == null) ? $this->defultOrder : $order;
+            $select->where($this->deleted . "=0 AND o.or_fecha='".$date."'");
+            $select->joinLeft("apachecms_orden_estudio AS oe", $this->_name.".op_oe_id=oe.oe_id");
+            $select->joinLeft("apachecms_orden AS o", "oe.oe_or_id=o.or_id");
+           // $select->order('op_id ASC');
             // $select->group('oe_');
             $resultsObject = $this->fetchAll($select);
             $results=($resultsObject)?$resultsObject->toArray():null;
